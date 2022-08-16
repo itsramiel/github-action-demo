@@ -1,0 +1,19 @@
+name: Log Temperature
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  temperature:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Write temperature
+        run: |
+          node index.js
+      - uses: EndBug/add-and-commit@v8
+        with:
+          author_name: Rami
+          message: Temperature written
